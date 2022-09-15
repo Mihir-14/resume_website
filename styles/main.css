@@ -86,7 +86,9 @@ li{
 #qualifications--list {
     list-style: none;
 }
-
+#eduTable{
+    table-layout: fixed;
+}
 #wrapper--techstack__items{
     display: flex;
     flex-wrap: wrap;
