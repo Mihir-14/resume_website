@@ -1,193 +1,727 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="./assets/images/custom-coding-svgrepo-com.svg">
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/main.css">
-    <title>Mihir Dudhatra</title>
+    <title>Mihir Dudhatra — Software Developer · Python, PostgreSQL &amp; Agentic AI</title>
+    <meta name="description"
+        content="Mihir Dudhatra is an Associate Software Developer building Python backend microservices, PostgreSQL data layers, and Agentic AI workflows with LangGraph and CrewAI.">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mihir Dudhatra — Software Developer">
+    <meta property="og:description"
+        content="Python backend microservices, PostgreSQL schema design, and Agentic AI workflows.">
+    <meta property="og:image" content="./assets/images/profile-640.jpg">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/custom-coding-svgrepo-com.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="./styles/main.css">
+
+    <!-- Apply the saved theme before first paint to avoid a flash of the wrong theme -->
+    <script>
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('js');
+            try {
+                var saved = localStorage.getItem('theme');
+                if (saved === 'light' || saved === 'dark') root.dataset.theme = saved;
+            } catch (e) { /* storage unavailable: fall back to system preference */ }
+        })();
+    </script>
+    <script src="./scripts/main.js" defer></script>
 </head>
 
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <div id="container--main">
+    <!-- SVG icon sprite -->
+    <svg xmlns="http://www.w3.org/2000/svg" hidden>
+        <symbol id="i-mail" viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="3" />
+            <path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7" />
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24">
+            <path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+        </symbol>
+        <symbol id="i-download" viewBox="0 0 24 24">
+            <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24">
+            <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" />
+            <circle cx="12" cy="9.5" r="2.5" />
+        </symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="12" height="12" rx="2" />
+            <path d="M5 15V5a2 2 0 0 1 2-2h8" />
+        </symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4" />
+            <path
+                d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24">
+            <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" />
+        </symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6 6 18" />
+        </symbol>
+        <symbol id="i-agents" viewBox="0 0 24 24">
+            <circle cx="6" cy="6" r="2.5" />
+            <circle cx="18" cy="6" r="2.5" />
+            <circle cx="12" cy="18" r="2.5" />
+            <path d="M8.5 6h7M7.2 8.2l3.6 7.6M16.8 8.2l-3.6 7.6" />
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="6.5" />
+            <path d="m20 20-4.4-4.4M8.5 11h5M11 8.5v5" />
+        </symbol>
+        <symbol id="i-db" viewBox="0 0 24 24">
+            <ellipse cx="12" cy="5.5" rx="7.5" ry="2.8" />
+            <path
+                d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8" />
+        </symbol>
+    </svg>
 
-        <section id="wrapper--hero" class="section--page">
-            <img id="profile-pic" src="./assets/images/IMG_20201210_215542 (2).jpg" alt="">
+    <header class="site-header" id="top">
+        <div class="container site-header__inner">
+            <a class="brand" href="#top" aria-label="Mihir Dudhatra, back to top">
+                <span class="brand__mark" aria-hidden="true">MD</span>
+                <span class="brand__name">Mihir Dudhatra</span>
+            </a>
 
-            <div>
-                <h1 id="user-name">Mihir Dudhatra</h1>
-                <h3>
-                    Main objective:-
-                </h3>
-                <p id="bio">
-                    secure a responsible career opportunity to fully utilize my Knowledge and skills, while making a
-                    major contribution to the welfare of the company.
-                </p>
-                <p id="email" >
-                    <a href="mailto:mihirdudhtra3906@gmail.com">👉 mihirdudhtra3906@gmail.com</a>
-                </p>
+            <nav class="site-nav" id="site-nav" aria-label="Primary">
+                <ul class="site-nav__list">
+                    <li><a class="site-nav__link" href="#about">About</a></li>
+                    <li><a class="site-nav__link" href="#experience">Experience</a></li>
+                    <li><a class="site-nav__link" href="#work">Work</a></li>
+                    <li><a class="site-nav__link" href="#skills">Skills</a></li>
+                    <li><a class="site-nav__link" href="#education">Education</a></li>
+                    <li><a class="site-nav__link" href="#contact">Contact</a></li>
+                </ul>
+                <a class="btn btn--primary btn--sm site-nav__cta" href="./assets/Resume_Mihir.pdf"
+                    download="Mihir-Dudhatra-Resume.pdf">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-download" />
+                    </svg>
+                    Résumé
+                </a>
+            </nav>
+
+            <div class="site-header__actions">
+                <button class="icon-btn" type="button" id="theme-toggle" aria-label="Switch to light theme">
+                    <svg class="icon icon--sun" aria-hidden="true">
+                        <use href="#i-sun" />
+                    </svg>
+                    <svg class="icon icon--moon" aria-hidden="true">
+                        <use href="#i-moon" />
+                    </svg>
+                </button>
+                <button class="icon-btn nav-toggle" type="button" id="nav-toggle" aria-controls="site-nav"
+                    aria-expanded="false" aria-label="Open menu">
+                    <svg class="icon icon--menu" aria-hidden="true">
+                        <use href="#i-menu" />
+                    </svg>
+                    <svg class="icon icon--close" aria-hidden="true">
+                        <use href="#i-close" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- ============ HERO ============ -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero__inner">
+                <div class="hero__content">
+                    <p class="hero__status">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        Associate Software Developer at YourDataConnect
+                    </p>
+                    <h1 class="hero__title" id="hero-title">Mihir Dudhatra</h1>
+                    <p class="hero__lead">
+                        I build <strong>Python backend microservices</strong>, design <strong>PostgreSQL</strong>
+                        schemas, and build <strong>Agentic AI workflows</strong> with CrewAI and LangGraph that
+                        automate data-processing pipelines.
+                    </p>
+                    <div class="hero__actions">
+                        <a class="btn btn--primary" href="#contact">
+                            Get in touch
+                            <svg class="icon" aria-hidden="true">
+                                <use href="#i-arrow" />
+                            </svg>
+                        </a>
+                        <a class="btn btn--ghost" href="./assets/Resume_Mihir.pdf" download="Mihir-Dudhatra-Resume.pdf">
+                            <svg class="icon" aria-hidden="true">
+                                <use href="#i-download" />
+                            </svg>
+                            Download résumé
+                        </a>
+                    </div>
+                    <ul class="hero__meta" aria-label="Quick links">
+                        <li>
+                            <svg class="icon" aria-hidden="true">
+                                <use href="#i-pin" />
+                            </svg>
+                            Mumbai, India · Remote
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/mihirdudhatra" target="_blank"
+                                rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true">
+                                    <use href="#i-linkedin" />
+                                </svg>
+                                LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://leetcode.com/mihirdudhatra3906/" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true">
+                                    <use href="#i-code" />
+                                </svg>
+                                LeetCode<span class="visually-hidden"> (opens in a new tab)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="hero__media">
+                    <img class="hero__photo" src="./assets/images/profile-640.jpg"
+                        srcset="./assets/images/profile-320.jpg 320w, ./assets/images/profile-640.jpg 640w"
+                        sizes="(min-width: 880px) 320px, (min-width: 600px) 200px, 128px" width="640" height="655"
+                        alt="Portrait of Mihir Dudhatra" fetchpriority="high" decoding="async">
+                </div>
             </div>
         </section>
 
-        <section class="section--page">
-            <div id="socials--list">
-                <a href="https://www.linkedin.com/in/mihir-dudhatra-74657a214" target="_blank">linkedin</a>
-                <!-- <a target="_blank"></a>
-                <a target="_blank"></a> -->
-                <a href="./assets/Mihir Dudhatra Resume.pdf" target="_blank">Download Resume</a>
-                <a href="https://leetcode.com/mihirdudhatra3906/" target="_blank">leetcode</a>
-            </div>
-        </section>
+        <!-- ============ ABOUT ============ -->
+        <section class="section" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">01 · About</p>
+                    <h2 class="section__title" id="about-title">Backend engineering with an AI focus</h2>
+                </header>
 
-        <!-- <scetion class="section--page">
-            <h2>Skills and Qualification(Certification)</h2>
-            <ul id="qualifications--list">
-                <li>✔️HTML/CSS</li>
-                <li>✔️JAVASCRIPT</li>
-                <li>✔️ </li>
-                <li>✔️Engineering Virtual Program (By Goldman Sachs)</li>
-            </ul>
-        </scetion> -->
-        <section class="section--page">
-            <div>
-                <h2>EDUCATION</h2>
-                <table border="01" id="eduTable">
-                    <thead>
-                        <td>Degree</td>
-                        <td>Institute</td>
-                        <td>Year</td>
-                        <td>Percentage/CGPA</td>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Btech(EXTC)</td>
-                            <td>SVKM’s Dwarkadas J. Sanghvi College Of Engineering.</td>
-                            <td>2020 - 2024</td>
-                            <td>8.345</td>
-                        </tr>
-                        <tr>
-                            <td>HSC</td>
-                            <td>Sardar Vallabhbhai Patel Vidyalaya Junior College</td>
-                            <td>2020</td>
-                            <td>71.85%</td>
-                        </section>
-                        </tr>
-                        <tr>
-                            <td>SSC</td>
-                            <td>Poorna Prajna High School.</td>
-                            <td>2018</td>
-                            <td>84.80%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div class="about">
+                    <div class="about__text prose">
+                        <p>
+                            I'm a software developer at <strong>YourDataConnect</strong>, where I design and maintain
+                            backend microservices in Python, architect PostgreSQL schemas, and build LLM-orchestrated
+                            automation pipelines using Agentic AI frameworks.
+                        </p>
+                        <p>
+                            My degree is in Electronics &amp; Telecommunication Engineering with <strong>Honors in
+                                Artificial Intelligence &amp; Machine Learning</strong>. Alongside hands-on backend
+                            work, I
+                            bring strong debugging, database architecture, and AI-governance-aligned engineering
+                            practices.
+                        </p>
+                        <p>
+                            I'm looking for a full-time software development role where I can keep applying that
+                            mix of backend, database, and Agentic AI experience.
+                        </p>
+                    </div>
 
-        <section class="section--page">
-            <h2>Tech Stack</h2>
-            <div id="wrapper--techstack__items">
-                <div class="card--techstack">
-                    <span>
-                        HTML
-                    </span>
-                </div>
-                <div class="card--techstack">
-                    <span>
-                        CSS
-                    </span>
-                </div>
-                <div class="card--techstack">
-                    <span>
-                        JAVASCRIPT
-                    </span>
-                </div>
-                <div class="card--techstack">
-                    <span>
-                        JAVA
-                    </span>
-                </div>
-                <div class="card--techstack">
-                    <span>
-                        Bootstrap, Tailwind
-                    </span>
-                </div>
-                <div class="card--techstack">
-                    <span>
-                        Wordpress,Shopify
-                    </span>
+                    <dl class="facts">
+                        <div class="facts__item">
+                            <dt>Current role</dt>
+                            <dd>Associate Software Developer, YourDataConnect</dd>
+                        </div>
+                        <div class="facts__item">
+                            <dt>Focus</dt>
+                            <dd>Python backends · PostgreSQL · Agentic AI</dd>
+                        </div>
+                        <div class="facts__item">
+                            <dt>Education</dt>
+                            <dd>B.Tech EXTC, Honors in AI &amp; ML · 2024</dd>
+                        </div>
+                        <div class="facts__item">
+                            <dt>Location</dt>
+                            <dd>Mumbai, Maharashtra · works remotely</dd>
+                        </div>
+                        <div class="facts__item">
+                            <dt>Languages</dt>
+                            <dd>English, Hindi, Gujarati</dd>
+                        </div>
+                        <div class="facts__item">
+                            <dt>Working style</dt>
+                            <dd>Stakeholder communication, analytical troubleshooting, remote collaboration</dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
         </section>
 
-        <section id="work-history-wrapper" class="section--page">
-            <h2>
-                Work History
-            </h2>
-            <div class="line-break"></div>
-            <div class="card--work-history">
-                <strong>
-                    🚧 Web Development Intern (intern) | Viral Inbound
-                </strong>
-                <p>Jun 2023 - Sep 2023</p>
+        <!-- ============ EXPERIENCE ============ -->
+        <section class="section section--alt" id="experience" aria-labelledby="experience-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">02 · Experience</p>
+                    <h2 class="section__title" id="experience-title">Where I've worked</h2>
+                </header>
 
-            </div>
-            <div class="line-break"></div>
-            <div class="card--work-history">
-                <strong>
-                    🚧 Frontend Web Developer (intern) | Goldenmace IT Solutions
-                </strong>
-                <p>Jul 2022 - Aug 2022</p>
+                <ol class="timeline">
+                    <li class="timeline__item">
+                        <div class="timeline__when">
+                            <p class="timeline__dates"><time datetime="2024-09">Sept 2024</time> – Present</p>
+                            <p class="timeline__place">Remote</p>
+                        </div>
+                        <article class="role role--current">
+                            <header class="role__header">
+                                <h3 class="role__title">Associate Software Developer</h3>
+                                <p class="role__company">YourDataConnect <span class="badge">Current</span></p>
+                            </header>
 
+                            <div class="role__groups">
+                                <div class="role__group">
+                                    <h4 class="role__group-title">Backend &amp; data</h4>
+                                    <ul class="role__list">
+                                        <li>Design, develop, and maintain backend microservices in
+                                            <strong>Python</strong>, following SDLC and Agile practices.</li>
+                                        <li>Architect <strong>PostgreSQL</strong> schemas and write complex SQL queries,
+                                            CTEs, views, and indexes to optimize data access and performance.</li>
+                                    </ul>
+                                </div>
+                                <div class="role__group">
+                                    <h4 class="role__group-title">AI automation</h4>
+                                    <ul class="role__list">
+                                        <li>Build autonomous LLM orchestration workflows with Agentic AI frameworks
+                                            (<strong>CrewAI</strong>, LangGraph-style patterns, OpenAI APIs) to automate
+                                            data-processing pipelines.</li>
+                                        <li>Implement <strong>RAG workflows</strong> for context-aware retrieval,
+                                            improving output accuracy across AI-driven tooling.</li>
+                                    </ul>
+                                </div>
+                                <div class="role__group">
+                                    <h4 class="role__group-title">Reliability &amp; collaboration</h4>
+                                    <ul class="role__list">
+                                        <li>Debug and benchmark production systems, resolving structural logic
+                                            bottlenecks and performance regressions.</li>
+                                        <li>Take part in code reviews and write technical documentation, including
+                                            schema diagrams and logic flowcharts.</li>
+                                        <li>Work with cross-functional stakeholders to turn platform performance issues
+                                            into technical solutions.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <ul class="tags" aria-label="Technologies used">
+                                <li>Python</li>
+                                <li>PostgreSQL</li>
+                                <li>SQL</li>
+                                <li>CrewAI</li>
+                                <li>OpenAI APIs</li>
+                                <li>RAG</li>
+                                <li>Agile</li>
+                            </ul>
+                        </article>
+                    </li>
+
+                    <li class="timeline__item">
+                        <div class="timeline__when">
+                            <p class="timeline__dates"><time datetime="2023-06">June 2023</time> – <time
+                                    datetime="2023-08">Aug 2023</time></p>
+                            <p class="timeline__place">Mumbai, Maharashtra</p>
+                        </div>
+                        <article class="role">
+                            <header class="role__header">
+                                <h3 class="role__title">Web Developer Intern</h3>
+                                <p class="role__company">Viral Inbound</p>
+                            </header>
+                            <ul class="role__list">
+                                <li>Developed high-performance websites using WordPress, Shopify, and Webflow.</li>
+                                <li>Built automated content pipelines and improved SEO, responsiveness, and performance.
+                                </li>
+                            </ul>
+                            <ul class="tags" aria-label="Technologies used">
+                                <li>WordPress</li>
+                                <li>Shopify</li>
+                                <li>Webflow</li>
+                                <li>SEO</li>
+                            </ul>
+                        </article>
+                    </li>
+
+                    <li class="timeline__item">
+                        <div class="timeline__when">
+                            <p class="timeline__dates"><time datetime="2022-07">July 2022</time> – <time
+                                    datetime="2022-08">Aug 2022</time></p>
+                            <p class="timeline__place">Navsari, Gujarat</p>
+                        </div>
+                        <article class="role">
+                            <header class="role__header">
+                                <h3 class="role__title">Web Developer Intern</h3>
+                                <p class="role__company">Goldenmace IT Solutions</p>
+                            </header>
+                            <ul class="role__list">
+                                <li>Built responsive, dynamic web pages with HTML, CSS, and JavaScript.</li>
+                                <li>Collaborated through Git/GitLab for version control, code reviews, and deployment.
+                                </li>
+                            </ul>
+                            <ul class="tags" aria-label="Technologies used">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>Git</li>
+                                <li>GitLab</li>
+                            </ul>
+                        </article>
+                    </li>
+                </ol>
             </div>
         </section>
 
-        <section class="section--page">
-            <div class="personal--details">
-                <div>
-                    <h2>STRENGTHS</h2>
-                    <div class="card--project">
-                        Dedicated
-                    </div>
+        <!-- ============ FEATURED WORK ============ -->
+        <section class="section" id="work" aria-labelledby="work-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">03 · Featured work</p>
+                    <h2 class="section__title" id="work-title">What I build day to day</h2>
+                    <p class="section__intro">
+                        Three areas of my work at YourDataConnect, broken down by goal, my contribution, and the stack
+                        behind it.
+                    </p>
+                </header>
 
-                    <div class="card--project">
-                        Team player
-                    </div>
+                <div class="work-grid">
+                    <article class="work-card">
+                        <div class="work-card__top">
+                            <span class="work-card__icon" aria-hidden="true"><svg class="icon">
+                                    <use href="#i-agents" />
+                                </svg></span>
+                            <p class="work-card__context">YourDataConnect · 2024 – Present</p>
+                        </div>
+                        <h3 class="work-card__title">Agentic AI data-processing pipelines</h3>
+                        <p class="work-card__summary">
+                            Autonomous, LLM-orchestrated workflows that automate data-processing pipelines.
+                        </p>
+                        <dl class="work-card__details">
+                            <div>
+                                <dt>Goal</dt>
+                                <dd>Automate data-processing pipelines with autonomous LLM orchestration.</dd>
+                            </div>
+                            <div>
+                                <dt>My contribution</dt>
+                                <dd>Built the orchestration workflows using Agentic AI frameworks: CrewAI,
+                                    LangGraph-style patterns, and OpenAI APIs.</dd>
+                            </div>
+                        </dl>
+                        <ul class="tags" aria-label="Technologies used">
+                            <li>Python</li>
+                            <li>CrewAI</li>
+                            <li>LangGraph-style patterns</li>
+                            <li>OpenAI APIs</li>
+                        </ul>
+                    </article>
 
-                    <div class="card--project">
-                        Team player
-                    </div>
+                    <article class="work-card">
+                        <div class="work-card__top">
+                            <span class="work-card__icon" aria-hidden="true"><svg class="icon">
+                                    <use href="#i-search" />
+                                </svg></span>
+                            <p class="work-card__context">YourDataConnect · 2024 – Present</p>
+                        </div>
+                        <h3 class="work-card__title">RAG for context-aware retrieval</h3>
+                        <p class="work-card__summary">
+                            Retrieval-Augmented Generation workflows that supply relevant context to AI-driven tools.
+                        </p>
+                        <dl class="work-card__details">
+                            <div>
+                                <dt>Goal</dt>
+                                <dd>Provide context-aware retrieval for AI-driven tooling.</dd>
+                            </div>
+                            <div>
+                                <dt>My contribution</dt>
+                                <dd>Implemented the RAG workflows.</dd>
+                            </div>
+                            <div>
+                                <dt>Outcome</dt>
+                                <dd>Improved output accuracy across AI-driven tooling.</dd>
+                            </div>
+                        </dl>
+                        <ul class="tags" aria-label="Technologies used">
+                            <li>Python</li>
+                            <li>RAG</li>
+                            <li>LLM APIs</li>
+                        </ul>
+                    </article>
 
-                    <div class="card--project">
-                        Detail Oriented
-                    </div>
-                    <div class="card--project">
-                        Self-motivated
-                    </div>
-                    <div class="card--project">
-                        Organized
-                    </div>
-                </div>
-                <div>
-                    <h2>PERSONAL DETAILS</h2>
-                    <div class="card--project">
-                        <p><strong>DOB:</strong>14-09-2002</p>
-                    </div>
-                    <div class="card--project">
-                        <p><strong>Language Known:</strong>English, Hindi, Gujarati</p>
-                    </div>
-                    <div class="card--project">
-                        <p><strong>Place:</strong>Mumbai</p>
-                    </div>
+                    <article class="work-card">
+                        <div class="work-card__top">
+                            <span class="work-card__icon" aria-hidden="true"><svg class="icon">
+                                    <use href="#i-db" />
+                                </svg></span>
+                            <p class="work-card__context">YourDataConnect · 2024 – Present</p>
+                        </div>
+                        <h3 class="work-card__title">PostgreSQL schema design &amp; performance</h3>
+                        <p class="work-card__summary">
+                            Relational schema design and SQL work aimed at fast, well-structured data access.
+                        </p>
+                        <dl class="work-card__details">
+                            <div>
+                                <dt>Goal</dt>
+                                <dd>Optimize data access and performance.</dd>
+                            </div>
+                            <div>
+                                <dt>My contribution</dt>
+                                <dd>Architected PostgreSQL schemas; wrote complex SQL queries, CTEs, views, and indexes;
+                                    documented the design with schema diagrams.</dd>
+                            </div>
+                        </dl>
+                        <ul class="tags" aria-label="Technologies used">
+                            <li>PostgreSQL</li>
+                            <li>SQL</li>
+                            <li>CTEs &amp; views</li>
+                            <li>Indexing</li>
+                        </ul>
+                    </article>
+
+                    <!--
+                        To add a personal project, copy this template into .work-grid.
+                        Only include links and images that exist.
+
+                    <article class="work-card">
+                        <img class="work-card__media" src="./assets/images/project-name.jpg" alt="Screenshot of …"
+                             width="1200" height="675" loading="lazy" decoding="async">
+                        <div class="work-card__top">
+                            <p class="work-card__context">Personal project · 2025</p>
+                        </div>
+                        <h3 class="work-card__title">Project name</h3>
+                        <p class="work-card__summary">One sentence: what it does.</p>
+                        <dl class="work-card__details">
+                            <div><dt>Problem</dt><dd>…</dd></div>
+                            <div><dt>My contribution</dt><dd>…</dd></div>
+                            <div><dt>Key features</dt><dd>…</dd></div>
+                            <div><dt>Outcome</dt><dd>…</dd></div>
+                        </dl>
+                        <ul class="tags" aria-label="Technologies used"><li>…</li></ul>
+                        <div class="work-card__links">
+                            <a class="text-link" href="https://github.com/…" target="_blank" rel="noopener noreferrer">Source code</a>
+                            <a class="text-link" href="https://…" target="_blank" rel="noopener noreferrer">Live demo</a>
+                        </div>
+                    </article>
+                    -->
                 </div>
             </div>
         </section>
 
+        <!-- ============ SKILLS ============ -->
+        <section class="section section--alt" id="skills" aria-labelledby="skills-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">04 · Skills</p>
+                    <h2 class="section__title" id="skills-title">Tech stack</h2>
+                </header>
 
-    </div>
+                <div class="skills-grid">
+                    <section class="skill-card skill-card--primary" aria-labelledby="sk-ai">
+                        <h3 class="skill-card__title" id="sk-ai">Agentic AI</h3>
+                        <ul class="tags tags--lg">
+                            <li>LangGraph</li>
+                            <li>CrewAI</li>
+                            <li>LangChain</li>
+                            <li>LLM API integration</li>
+                            <li>Prompt engineering</li>
+                            <li>RAG workflows</li>
+                        </ul>
+                    </section>
+                    <section class="skill-card skill-card--primary" aria-labelledby="sk-lang">
+                        <h3 class="skill-card__title" id="sk-lang">Languages</h3>
+                        <ul class="tags tags--lg">
+                            <li>Python</li>
+                            <li>SQL</li>
+                            <li>Java</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </section>
+                    <section class="skill-card skill-card--primary" aria-labelledby="sk-db">
+                        <h3 class="skill-card__title" id="sk-db">Databases</h3>
+                        <ul class="tags tags--lg">
+                            <li>PostgreSQL</li>
+                            <li>MySQL</li>
+                        </ul>
+                        <p class="skill-card__note">Complex SQL, CTEs, indexing, query optimization</p>
+                    </section>
+                    <section class="skill-card" aria-labelledby="sk-be">
+                        <h3 class="skill-card__title" id="sk-be">Backend</h3>
+                        <ul class="tags">
+                            <li>FastAPI</li>
+                            <li>Flask</li>
+                            <li>Django</li>
+                            <li>RESTful APIs</li>
+                            <li>Async programming</li>
+                        </ul>
+                    </section>
+                    <section class="skill-card" aria-labelledby="sk-ml">
+                        <h3 class="skill-card__title" id="sk-ml">AI / ML</h3>
+                        <ul class="tags">
+                            <li>Generative AI</li>
+                            <li>NLP</li>
+                            <li>Whisper STT</li>
+                            <li>Embeddings</li>
+                            <li>PyTorch (basic)</li>
+                            <li>TensorFlow (basic)</li>
+                        </ul>
+                    </section>
+                    <section class="skill-card" aria-labelledby="sk-ops">
+                        <h3 class="skill-card__title" id="sk-ops">DevOps, tools &amp; cloud</h3>
+                        <ul class="tags">
+                            <li>Docker</li>
+                            <li>Git</li>
+                            <li>GitHub</li>
+                            <li>GitLab</li>
+                            <li>CI/CD pipelines</li>
+                            <li>VS Code</li>
+                            <li>AWS EC2</li>
+                            <li>AWS S3</li>
+                            <li>AWS Lambda</li>
+                        </ul>
+                    </section>
+                    <section class="skill-card skill-card--wide" aria-labelledby="sk-eng">
+                        <h3 class="skill-card__title" id="sk-eng">Engineering practice &amp; documentation</h3>
+                        <ul class="tags">
+                            <li>SDLC</li>
+                            <li>Agile</li>
+                            <li>Code reviews</li>
+                            <li>Unit testing</li>
+                            <li>Debugging &amp; benchmarking</li>
+                            <li>Technical documentation</li>
+                            <li>System architecture diagrams</li>
+                            <li>Relational schema design</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </section>
 
+        <!-- ============ EDUCATION ============ -->
+        <section class="section" id="education" aria-labelledby="education-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">05 · Education</p>
+                    <h2 class="section__title" id="education-title">Education</h2>
+                </header>
+
+                <div class="edu">
+                    <article class="edu-card edu-card--main">
+                        <p class="edu-card__years"><time datetime="2020">2020</time> – <time datetime="2024">2024</time>
+                        </p>
+                        <h3 class="edu-card__degree">B.Tech in Electronics &amp; Telecommunication Engineering</h3>
+                        <p class="edu-card__school">SVKM's Dwarkadas J. Sanghvi College of Engineering, Mumbai</p>
+                        <div class="edu-card__highlights">
+                            <p class="highlight">
+                                <span class="highlight__label">Honors</span>
+                                Artificial Intelligence &amp; Machine Learning
+                            </p>
+                            <p class="highlight">
+                                <span class="highlight__label">CGPA</span>
+                                8.345
+                            </p>
+                        </div>
+                    </article>
+
+                    <ul class="edu-list">
+                        <li class="edu-card">
+                            <p class="edu-card__years"><time datetime="2020">2020</time></p>
+                            <h3 class="edu-card__degree">HSC (12th)</h3>
+                            <p class="edu-card__school">Sardar Vallabhbhai Patel Vidyalaya Junior College</p>
+                            <p class="edu-card__score">71.85%</p>
+                        </li>
+                        <li class="edu-card">
+                            <p class="edu-card__years"><time datetime="2018">2018</time></p>
+                            <h3 class="edu-card__degree">SSC (10th)</h3>
+                            <p class="edu-card__school">Poorna Prajna High School</p>
+                            <p class="edu-card__score">84.80%</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact">
+                    <p class="section__eyebrow">06 · Contact</p>
+                    <h2 class="contact__title" id="contact-title">Let's work together</h2>
+                    <p class="contact__text">
+                        I'm open to full-time software development roles in backend engineering, databases, and Agentic
+                        AI. Reach me by email or on LinkedIn.
+                    </p>
+
+                    <div class="contact__email">
+                        <a class="btn btn--primary btn--lg" href="mailto:mihirdudhatra3906@gmail.com">
+                            <svg class="icon" aria-hidden="true">
+                                <use href="#i-mail" />
+                            </svg>
+                            <span class="contact__address">mihirdudhatra3906@gmail.com</span>
+                        </a>
+                        <button class="btn btn--ghost btn--lg" type="button" id="copy-email"
+                            data-copy="mihirdudhatra3906@gmail.com" hidden>
+                            <svg class="icon" aria-hidden="true">
+                                <use href="#i-copy" />
+                            </svg>
+                            <span class="copy-label">Copy email</span>
+                        </button>
+                    </div>
+                    <p class="contact__status" id="copy-status" role="status" aria-live="polite"></p>
+
+                    <ul class="contact__links">
+                        <li>
+                            <a class="text-link" href="https://www.linkedin.com/in/mihirdudhatra" target="_blank"
+                                rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true">
+                                    <use href="#i-linkedin" />
+                                </svg>
+                                LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-link" href="https://leetcode.com/mihirdudhatra3906/" target="_blank"
+                                rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true">
+                                    <use href="#i-code" />
+                                </svg>
+                                LeetCode<span class="visually-hidden"> (opens in a new tab)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-link" href="./assets/Resume_Mihir.pdf" download="Mihir-Dudhatra-Resume.pdf">
+                                <svg class="icon" aria-hidden="true">
+                                    <use href="#i-download" />
+                                </svg>
+                                Résumé (PDF)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+            <p>© <span id="year">2026</span> Mihir Dudhatra</p>
+            <a class="text-link" href="#top">Back to top ↑</a>
+        </div>
+    </footer>
 </body>
 
 </html>
