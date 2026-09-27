@@ -69,6 +69,19 @@
         if (event.matches && isNavOpen()) setNavOpen(false);
     });
 
+    /* ---------- Back to top (logo + footer link) ---------- */
+
+    var brand = document.querySelector('.brand');
+    document.addEventListener('click', function (event) {
+        if (!event.target.closest('a[href="#top"]')) return;
+        event.preventDefault();
+        if (isNavOpen()) setNavOpen(false);
+        window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+        if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+        // Return keyboard focus to the top of the page without interrupting the scroll
+        brand.focus({ preventScroll: true });
+    });
+
     /* ---------- Header border once scrolled ---------- */
 
     var header = document.querySelector('.site-header');
